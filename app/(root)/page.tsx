@@ -3,7 +3,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <div className='flex gap-5 items-center'>
       <h1>This is Home page</h1>
       <UserButton  />
     </div>
