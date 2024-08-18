@@ -24,9 +24,9 @@ export default function RootLayout({
     }}>
       <html lang="en">
         <body className={cn("font-IBMPlex antialiased", IMBPlex.variable)}>
-          <SignedOut>
+          {/* <SignedOut>
             <SignInButton />
-          </SignedOut>
+          </SignedOut> */}
           {/* <SignedIn>
             <UserButton />
           </SignedIn> */}
