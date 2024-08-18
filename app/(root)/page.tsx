@@ -4,8 +4,7 @@ import React from 'react'
 const page = () => {
   return (
     <div className='flex gap-5 items-center'>
-      <h1>This is Home page</h1>
-      <UserButton  />
+      <h1>This is children part</h1>
     </div>
   )
 }

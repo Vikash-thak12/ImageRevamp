@@ -1,17 +1,23 @@
-import Sidebar from '@/components/shared/Sidebar'
-import React from 'react'
+import Sidebar from '@/components/shared/Sidebar';
+import React from 'react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "ImageRevamp",
+  description: "An advanced photo editing platform",
+};
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    return (
-            <main className='root'>
-                <Sidebar />
-                <div className='root-container'>
-                    <div className='wrapper'>
-                        {/* {children} */}
-                    </div>
-                </div>
-            </main>
-    )
-}
+  return (
+    <main className="root">
+      <Sidebar />
+      <div className="root-container">
+        <div className="wrapper">
+          {children}
+        </div>
+      </div>
+    </main>
+  );
+};
 
-export default Layout
+export default Layout;

@@ -1,13 +1,19 @@
-import React from 'react'
+// import React from 'react';
+// import type { Metadata } from 'next';
 
-const Layout = ({children}: {children: React.ReactNode}) => {
-  return (
-    <div>
-        <main className='auth'>
-            {children}
-        </main>
-    </div>
-  )
-}
+// // export const metadata: Metadata = {
+// //   title: "ImageRevamp",
+// //   description: "Sign in to ImageRevamp",
+// // };
 
-export default Layout
+// const Layout = ({ children }: { children: React.ReactNode }) => {
+//   return (
+//     <div>
+//       <main className="auth">
+//         {children}
+//       </main>
+//     </div>
+//   );
+// };
+
+// export default Layout;
