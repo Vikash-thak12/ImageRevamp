@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 import { config } from "process";
 
 const ImageSchema = new Schema({
@@ -49,3 +49,7 @@ const ImageSchema = new Schema({
         type: Date, default: Date.now
     }
 })
+
+const Image = models?.Image || model("Image", ImageSchema)
+
+export default Image
