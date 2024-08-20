@@ -1,5 +1,28 @@
-import { model, models, Schema } from "mongoose";
-import { config } from "process";
+import { Document, model, models, Schema } from "mongoose";
+
+import { Types } from "mongoose";
+
+export interface Image extends Document {
+  title: string;
+  transformationType: string;
+  publicId: string;
+  secureUrl: string;
+  width?: number;
+  height?: number;
+  config?: object;
+  transformationUrl?: string;
+  aspectRatio?: string;
+  color?: string;
+  prompt?: string;
+  author?: {
+    _id: string,
+    firstName: string, 
+    lastName: string
+  }
+  created_at: Date;
+  updated_at: Date;
+}
+
 
 const ImageSchema = new Schema({
     title: {
