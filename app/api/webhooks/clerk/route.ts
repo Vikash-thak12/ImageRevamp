@@ -1,11 +1,17 @@
 /* eslint-disable camelcase */
-import { clerkClient } from "@clerk/nextjs";
+// import { clerkClient } from "@clerk/nextjs";
+import { clerkClient } from "@clerk/clerk-sdk-node";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions"
+
+// const clerkClient = new Clerk({
+//     apiKey: process.env.CLERK_SECRET_KEY // Make sure to add your Clerk API key to environment variables
+//   });
+  
 
 export async function POST(req: Request) {
     // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
