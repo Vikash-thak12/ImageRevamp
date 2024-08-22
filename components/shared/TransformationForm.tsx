@@ -4,10 +4,21 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+
 import { Form } from "@/components/ui/form"
-import { defaultValues } from "@/constants"
+import { aspectRatioOptions, defaultValues, transformationTypes } from "@/constants"
 import { CustomField } from "./CustomField"
 import { Input } from "../ui/input"
+import { useState } from "react"
+import { AspectRatioKey } from "@/lib/utils"
 
 // will be the schema of the form 
 export const formSchema = z.object({
@@ -19,7 +30,11 @@ export const formSchema = z.object({
 })
 
 
-const TransformationForm = ({ action, data = null}: TransformationFormProps) => {  // this props contain action, userId, type, creditBalance,data, config
+const TransformationForm = ({ action, data = null, userId, type, creditBalance }: TransformationFormProps) => {  // this props contain action, userId, type, creditBalance,data, config
+
+  const TransformationType = transformationTypes[type] // the types are restore, fill, remove, recolor
+  const [image, setImage] = useState(data)
+  const [newTransformation, setNewTransformation] = useState<Transformations | null>(null)  // here the transformations are types which contain all the types of the transformation types
 
   const initialValues = data && action === 'Update' ? {
     title: data?.title,
@@ -43,7 +58,9 @@ const TransformationForm = ({ action, data = null}: TransformationFormProps) => 
   }
 
 
+  const onSelectFieldHandler = (Value: string, onChangeField: (value: string) => void) => {
 
+  }
 
 
 
@@ -52,12 +69,44 @@ const TransformationForm = ({ action, data = null}: TransformationFormProps) => 
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <CustomField
-        control={form.control}
-        name="title"
-        formLabel="Image Title"
-        className="w-full"
-        render={({ field }) => <Input className="input-field" />}
-         />
+          control={form.control}
+          name="title"
+          formLabel="Image Title"
+          className="w-full"
+          render={({ field }) => <Input className="input-field" />}
+        />
+
+        {
+          type === 'fill' && (
+            <CustomField
+            control={form.control}
+            name="aspectRatio"
+            formLabel="AspectRatio"
+            className="w-full"
+              render={({ field }) =>
+                <Select 
+              onValueChange={(value) => 
+                onSelectFieldHandler(value, field.onChange)
+              }
+                >
+                  <SelectTrigger className="select-field">
+                    <SelectValue placeholder="Select size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {
+                      Object.keys(aspectRatioOptions).map((key) => (
+                        <SelectItem key={key} value={key} className="select-item">
+                          {aspectRatioOptions[key as AspectRatioKey].label}
+                        </SelectItem>
+                      ))
+                    }
+                  </SelectContent>
+                </Select>
+
+              }
+            />
+          )
+        }
       </form>
     </Form>
   )
