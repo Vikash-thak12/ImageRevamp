@@ -114,7 +114,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
             <div className="prompt-field">
               <CustomField
                 control={form.control}
-                name="Prompt"
+                name="prompt"
                 formLabel={
                   type === 'remove' ? "Object to Remove" : "Object to Recolor"
                 }
