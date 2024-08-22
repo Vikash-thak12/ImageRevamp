@@ -36,6 +36,8 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
   const TransformationType = transformationTypes[type] // the types are restore, fill, remove, recolor
   const [image, setImage] = useState(data)
   const [newTransformation, setNewTransformation] = useState<Transformations | null>(null)  // here the transformations are types which contain all the types of the transformation types
+  const [isTransforming, setIsTransforming] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const initialValues = data && action === 'Update' ? {
     title: data?.title,
