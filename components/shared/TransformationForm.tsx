@@ -63,6 +63,11 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
   }
 
 
+  const onInputChangeHandler = (fieldName: string, value: string, type: string, onChangeField: (value: string) => void) => {
+
+  }
+
+
 
   // Main function which is returing the payload
   return (
@@ -79,16 +84,12 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
         {
           type === 'fill' && (
             <CustomField
-            control={form.control}
-            name="aspectRatio"
-            formLabel="AspectRatio"
-            className="w-full"
+              control={form.control}
+              name="aspectRatio"
+              formLabel="AspectRatio"
+              className="w-full"
               render={({ field }) =>
-                <Select 
-              onValueChange={(value) => 
-                onSelectFieldHandler(value, field.onChange)
-              }
-                >
+                <Select onValueChange={(value) => onSelectFieldHandler(value, field.onChange)} >
                   <SelectTrigger className="select-field">
                     <SelectValue placeholder="Select size" />
                   </SelectTrigger>
@@ -105,6 +106,55 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
 
               }
             />
+          )
+        }
+
+        {
+          (type === "remove" || type === "recolor") && (
+            <div className="prompt-field">
+              <CustomField
+                control={form.control}
+                name="Prompt"
+                formLabel={
+                  type === 'remove' ? "Object to Remove" : "Object to Recolor"
+                }
+                className="w-full"
+                render={({ field }) => (
+                  <Input
+                    value={field.Value}
+                    className="input-field"
+                    onChange={(e) => onInputChangeHandler(
+                      'prompt',
+                      e.target.value,
+                      type,
+                      field.onChange
+                    )}
+                  />
+                )}
+              />
+              {
+                type === "recolor" && (
+                  <CustomField
+                    control={form.control}
+                    name="color"
+                    formLabel="Replacement Color"
+                    className="w-full"
+                    render={({ field }) => (
+                      <Input
+                        value={field.Value}
+                        className="input-field"
+                        onChange={(e) => onInputChangeHandler(
+                          'color',
+                          e.target.value,
+                          "recolor",
+                          field.onChange
+                        )}
+                      />
+                    )}
+                  />
+                )
+              }
+            </div>
           )
         }
       </form>
