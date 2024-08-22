@@ -16,8 +16,13 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+// will be the schema of the form 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  title: z.string(),
+  aspectRatio: z.string().optional(),
+  color: z.string().optional(),
+  prompt: z.string().optional(),
+  publicId: z.string()
 })
 
 
