@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { defaultValues } from "@/constants"
 
 // will be the schema of the form 
 const formSchema = z.object({
@@ -26,14 +27,22 @@ const formSchema = z.object({
 })
 
 
-const TransformationForm = () => {
+const TransformationForm = ({ action, data = null}: TransformationFormProps) => {  // this props contain action, userId, type, creditBalance,data, config
+
+  const initialValues = data && action === 'Update' ? {
+    title: data?.title,
+    aspectRatio: data?.aspectRatio,
+    color: data?.color,
+    prompt: data?.prompt,
+    publicId: data?.publicId,
+  } : defaultValues;  // this default values is coming from the constants
+
+
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-    },
+    defaultValues: initialValues
   })
 
   // 2. Define a submit handler.
@@ -41,6 +50,12 @@ const TransformationForm = () => {
     console.log(values)
   }
 
+
+
+
+
+
+  // Main function which is returing the payload
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
