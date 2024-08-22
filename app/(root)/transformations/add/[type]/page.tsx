@@ -1,5 +1,4 @@
 import Header from '@/components/shared/Header'
-import React from 'react'
 import { transformationTypes } from "@/constants"
 import TransformationForm from '@/components/shared/TransformationForm'
 import { auth } from '@clerk/nextjs/server'
@@ -13,6 +12,8 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
 
   if (!userId) redirect('/sign-in')
   const user = await getUserById(userId)   // since we don't need to pass clerk id as we need to pass only the userId coming from the mongodb database
+
+  
   return (
     <>
       <Header
