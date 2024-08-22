@@ -19,6 +19,7 @@ import { CustomField } from "./CustomField"
 import { Input } from "../ui/input"
 import { useState } from "react"
 import { AspectRatioKey } from "@/lib/utils"
+import { Button } from "../ui/button"
 
 // will be the schema of the form 
 export const formSchema = z.object({
@@ -157,6 +158,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
             </div>
           )
         }
+        <Button type="submit" className="submit-button capitalize">Submit</Button>
       </form>
     </Form>
   )
