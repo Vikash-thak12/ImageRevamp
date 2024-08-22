@@ -31,13 +31,14 @@ export const formSchema = z.object({
 })
 
 
-const TransformationForm = ({ action, data = null, userId, type, creditBalance }: TransformationFormProps) => {  // this props contain action, userId, type, creditBalance,data, config
+const TransformationForm = ({ action, data = null, userId, type, creditBalance, config = null }: TransformationFormProps) => {  // this props contain action, userId, type, creditBalance,data, config
 
   const TransformationType = transformationTypes[type] // the types are restore, fill, remove, recolor
   const [image, setImage] = useState(data)
   const [newTransformation, setNewTransformation] = useState<Transformations | null>(null)  // here the transformations are types which contain all the types of the transformation types
-  const [isTransforming, setIsTransforming] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isTransforming, setIsTransforming] = useState(false)
+  const [transformationConfig, setTransformationConfig] = useState(config)
 
   const initialValues = data && action === 'Update' ? {
     title: data?.title,
@@ -62,7 +63,16 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
 
 
   const onSelectFieldHandler = (Value: string, onChangeField: (value: string) => void) => {
+    const imageSize = aspectRatioOptions[Value as AspectRatioKey]
+    setImage((prevState: any) => ({
+      ...prevState,
+      aspectRatio: imageSize.aspectRatio,
+      width: imageSize.width,
+      height: imageSize.height
+    }))
 
+    setNewTransformation(TransformationType.config)
+    return onChangeField(Value)
   }
 
 
@@ -70,6 +80,10 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
 
   }
 
+
+  const onTransformHandler = () => {
+
+  }
 
 
   // Main function which is returing the payload
@@ -160,7 +174,23 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance }
             </div>
           )
         }
-        <Button type="submit" className="submit-button capitalize">Submit</Button>
+
+        <div className="flex flex-col gap-5">
+        <Button
+            type="button"
+            disabled={isTransforming || newTransformation === null}
+            onClick={onTransformHandler}
+            className="submit-button capitalize">
+            {isTransforming ? "Transforming....": "Apply Transformation"}
+          </Button>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="submit-button capitalize">
+            {isSubmitting ? "Submitting..." : "Save Image"}
+          </Button>
+
+        </div>
       </form>
     </Form>
   )

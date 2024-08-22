@@ -13,7 +13,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
   if (!userId) redirect('/sign-in')
   const user = await getUserById(userId)   // since we don't need to pass clerk id as we need to pass only the userId coming from the mongodb database
 
-  
+
   return (
     <>
       <Header
@@ -21,12 +21,14 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
         subtitle={Transformation.subTitle}
       />
 
-      <TransformationForm
-        action="Add"
-        userId={user._id}
-        type={Transformation.type as TransformationTypeKey}   // the Transformation types have like restore, background reomve, object remove 
-        creditBalance={user.creditBalance}
-      />
+      <section className="mt-14">
+        <TransformationForm
+          action="Add"
+          userId={user._id}
+          type={Transformation.type as TransformationTypeKey}   // the Transformation types have like restore, background reomve, object remove 
+          creditBalance={user.creditBalance}
+        />
+      </section>
     </>
   )
 }
