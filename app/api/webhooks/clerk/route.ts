@@ -70,7 +70,7 @@ export async function POST(req: Request) {
         const user = {
             clerkId: id,
             email: email_addresses[0].email_address,
-            username: username!,
+            username: username ?? '',
             firstName: first_name ?? '',  // Fallback to an empty string if null  
             lastName: last_name ?? '',   // Fallback to an empty string if null
             photo: image_url,
@@ -97,7 +97,7 @@ export async function POST(req: Request) {
         const user = {
             firstName: first_name ?? '',  // Fallback to an empty string if null  
             lastName: last_name ?? '',   // Fallback to an empty string if null
-            username: username!,
+            username: username ?? '',
             photo: image_url,
         };
 

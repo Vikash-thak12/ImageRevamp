@@ -1,7 +1,5 @@
 import { Document, model, models, Schema } from "mongoose";
 
-import { Types } from "mongoose";
-
 export interface Image extends Document {
   title: string;
   transformationType: string;

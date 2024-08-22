@@ -1,5 +1,4 @@
-import { error } from "console";
-import mongoose, {connection, Mongoose} from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
 const MONGODB_URL = process.env.MONGODB_URL
 
@@ -10,11 +9,11 @@ interface MongooseConnection {
 
 let cached: MongooseConnection = (global as any).mongoose
 if(!cached) {
-    cached: (global as any).mongoose = {
+    cached = (global as any).mongoose = {
         connection: null, promise: null
     }
 }
-
+ 
 export const connectToDatabase = async () => {
     if(cached.connection) return cached.connection;
     if(!MONGODB_URL) throw new Error("Missing MongoDb Url")
