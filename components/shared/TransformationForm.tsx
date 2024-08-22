@@ -4,21 +4,13 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { Form } from "@/components/ui/form"
 import { defaultValues } from "@/constants"
+import { CustomField } from "./CustomField"
+import { Input } from "../ui/input"
 
 // will be the schema of the form 
-const formSchema = z.object({
+export const formSchema = z.object({
   title: z.string(),
   aspectRatio: z.string().optional(),
   color: z.string().optional(),
@@ -59,6 +51,13 @@ const TransformationForm = ({ action, data = null}: TransformationFormProps) => 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <CustomField
+        control={form.control}
+        name="title"
+        formLabel="Image Title"
+        className="w-full"
+        render={({ field }) => <Input className="input-field" />}
+         />
       </form>
     </Form>
   )
