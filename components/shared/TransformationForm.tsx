@@ -18,7 +18,7 @@ import { aspectRatioOptions, defaultValues, transformationTypes } from "@/consta
 import { CustomField } from "./CustomField"
 import { Input } from "../ui/input"
 import { useState } from "react"
-import { AspectRatioKey } from "@/lib/utils"
+import { AspectRatioKey, debounce } from "@/lib/utils"
 import { Button } from "../ui/button"
 
 // will be the schema of the form 
@@ -77,7 +77,16 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
 
 
   const onInputChangeHandler = (fieldName: string, value: string, type: string, onChangeField: (value: string) => void) => {
-
+    debounce( () => {
+      setNewTransformation((prevState: any) => ({
+        ...prevState, 
+        [type]: {
+          ...prevState?.[type],
+          [fieldName === "prompt" ? 'prompt' : "to"]: value
+        }
+      }))
+      return onChangeField(value)
+    }, 1000)
   }
 
 
