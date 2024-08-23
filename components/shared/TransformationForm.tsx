@@ -103,7 +103,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
 
     // funciton related to credits
     startTransition(async () => {
-      await updateCredits(userId, creditFee)   // the creditFee is -1 which is coming from the constants
+      await updateCredits(userId, creditFee)   // the creditFee is -1 which is coming from the constants    
     })
   }
 
@@ -117,7 +117,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           name="title"
           formLabel="Image Title"
           className="w-full"
-          render={({ field }) => <Input className="input-field" />}
+          render={({ field }) => <Input {...field} className="input-field" />}
         />
 
         {
