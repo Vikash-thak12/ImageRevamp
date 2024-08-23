@@ -5,6 +5,7 @@ import { connectToDatabase } from "../database/mongoose"
 import { handleError } from "../utils"
 import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
+import { redirect } from "next/navigation";
 
 
 // For adding the Image
@@ -70,10 +71,11 @@ export async function deleteImage (imageId: string) {
 export async function getImageById(imageId: string) {
     try {
         await connectToDatabase();
-        revalidatePath(path)
+        await Image.findByIdAndDelete(imageId)
 
-        return JSON.parse(JSON.stringify(image))
     } catch (error) {
         handleError(error)
+    } finally {
+        redirect("/")
     }
 }
