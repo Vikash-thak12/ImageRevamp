@@ -50,6 +50,7 @@ const MediaUploader = ({ publicId, onValueChange, setImage, image, type }: Media
 
 
     return (
+        // gives multiple options from where we can upload the image
         <CldUploadWidget
             uploadPreset='my_imagerevamp'
             options={{
@@ -66,7 +67,8 @@ const MediaUploader = ({ publicId, onValueChange, setImage, image, type }: Media
                     {publicId ? (
                         <>
                             <div className='cursor-pointer overflow-hidden rounded-[10px]'>
-                                <h1>Hey this is what you looking</h1>
+
+                                {/* CldImage used to display images from Cloudinary with various transformations (e.g., resizing, cropping, applying effects) */}
                                 <CldImage
                                     width={getImageSize(type, image, "width")}
                                     height={getImageSize(type, image, "width")}
@@ -81,7 +83,6 @@ const MediaUploader = ({ publicId, onValueChange, setImage, image, type }: Media
                     ) : (
                         <>
                             <div className='media-uploader_cta' onClick={() => open()}>
-                                <h1>Hey this is not</h1>
                                 <div className='media-uploader_cta-image'>
                                     <Image
                                         src="/assets/icons/add.svg"
