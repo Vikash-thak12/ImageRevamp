@@ -346,7 +346,7 @@
 
   /* TransformedImage Component */
   .download-btn {
-    @apply p-14-medium mt-2 flex items-center gap-2 px-2;
+    @apply p-14-medium mt-2 flex items-center gap-2 px-2 hover:bg-gray-200 rounded-md;
   }
 
   .transformed-image {

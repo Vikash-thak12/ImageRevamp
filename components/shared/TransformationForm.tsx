@@ -21,6 +21,8 @@ import { useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
 import { Button } from "../ui/button"
 import MediaUploader from "./MediaUploader"
+import TransformedImage from "./TransformedImage"
+import { updateCredits } from "@/lib/actions/user.actions"
 
 // will be the schema of the form 
 export const formSchema = z.object({
@@ -79,9 +81,9 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
 
 
   const onInputChangeHandler = (fieldName: string, value: string, type: string, onChangeField: (value: string) => void) => {
-    debounce( () => {
+    debounce(() => {
       setNewTransformation((prevState: any) => ({
-        ...prevState, 
+        ...prevState,
         [type]: {
           ...prevState?.[type],
           [fieldName === "prompt" ? 'prompt' : "to"]: value
@@ -98,8 +100,10 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
       deepMergeObjects(newTransformation, transformationConfig)
     )
     setNewTransformation(null)
+
+    // funciton related to credits
     startTransition(async () => {
-      // await updateCredits(userId, creditFee)
+      await updateCredits(userId, creditFee)
     })
   }
 
@@ -192,31 +196,40 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
             </div>
           )
         }
- 
+
         <div className="media-uploader-field">
           <CustomField
-          control={form.control}
-          name="publicId"
-          className="flex w-full flex-col"
-          render={({ field}) => (
-            <MediaUploader
-            onValueChange={field.onChange}
-            setImage={setImage}
-            publicId={field.value}
+            control={form.control}
+            name="publicId"
+            className="flex w-full flex-col"
+            render={({ field }) => (
+              <MediaUploader
+                onValueChange={field.onChange}
+                setImage={setImage}
+                publicId={field.value}
+                image={image}
+                type={type}
+              />
+            )}
+          />
+
+          <TransformedImage
             image={image}
             type={type}
-             />
-          )}
-           />
+            title={form.getValues().title}
+            isTransforming={isTransforming}
+            setIsTransforming={setIsTransforming}
+            transformationConfig={transformationConfig}
+          />
         </div>
 
         <div className="flex flex-col gap-5">
-        <Button
+          <Button
             type="button"
             disabled={isTransforming || newTransformation === null}
             onClick={onTransformHandler}
             className="submit-button capitalize">
-            {isTransforming ? "Transforming....": "Apply Transformation"}
+            {isTransforming ? "Transforming...." : "Apply Transformation"}
           </Button>
           <Button
             type="submit"
