@@ -8,9 +8,9 @@ import React from 'react'
 
 const page = async ({ searchParams }: SearchParamProps) => {
 
-  const {userId } = auth()
-  
-  
+  const { userId } = auth()
+
+
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || "";
   const images = await getAllImages({ page, searchQuery })
@@ -49,9 +49,11 @@ const page = async ({ searchParams }: SearchParamProps) => {
           </>
         ) : (
           //TODO: update or Design the below code 
-          <div className='3xl text-black bg-white'>Hey buddy please login </div>
+          <section className='lg:home sm:home-sm'>
+            <h1 className='home-heading'>Improve, renovate, or give a fresh and updated appearance to your Image.</h1>
+          </section>
         )
-    }
+      }
 
     </>
   )

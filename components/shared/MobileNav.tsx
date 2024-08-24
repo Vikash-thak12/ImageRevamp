@@ -41,14 +41,17 @@ const MobileNav = () => {
                                 className="cursor-pointer"
                             />
                         </SheetTrigger>
-                        <SheetContent className="sheet-content sm:w-64">
+                        <SheetContent className="sheet-content bg-gray-200 sm:w-64">
                             <>
-                                <Image
-                                    src="/assets/images/logo-text.svg"
+                            <div className="flex items-center">
+                            <Image
+                                    src="/assets/images/logo.png"
                                     alt="logo"
-                                    width={150}
+                                    width={70}
                                     height={28}
                                 />
+                                <p className="text-gray-500 font-bold text-xl">Image Revamp</p>
+                            </div>
                                 <ul className='header-nav_elements'>
                                     {navLinks.map((link) => {
                                         const isActive = link.route === pathname
