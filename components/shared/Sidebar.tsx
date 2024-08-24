@@ -10,7 +10,7 @@ const Sidebar = () => {
     const pathname = usePathname()
     return (
         <aside className='sidebar'>
-            <div className='flex size-full flex-col'>
+            <div className='flex size-full flex-col gap-2'>
                 <Link href="/" className='sidebar-logo hover:bg-gray-300 rounded-lg mt-4'>
                     <Image src="/assets/images/logo.png" alt='logo' width={100} height={28} />
                     <p className='text-gray-500 font-bold text-xl'>Image Revamp</p>
