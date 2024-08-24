@@ -162,8 +162,8 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           [fieldName === "prompt" ? 'prompt' : "to"]: value
         }
       }))
-      return onChangeField(value)
-    }, 1000)
+    }, 1000)()   // make the debouce self evoke using ()
+    return onChangeField(value)
   }
 
 
@@ -319,6 +319,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           <Button
             type="submit"
             disabled={isSubmitting}
+            
             className="submit-button capitalize">
             {isSubmitting ? "Submitting..." : "Save Image"}
           </Button>
