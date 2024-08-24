@@ -80,16 +80,32 @@ export async function deleteImage(imageId: string) {
 }
 
 // For getting the single Image
-export async function getImageById(imageId: string) {
-    try {
-        await connectToDatabase();
-        const image = populateUser(Image.findById(imageId))
+// export async function getImageById(imageId: string) {
+//     try {
+//         await connectToDatabase();
+//         const image = populateUser(Image.findById(imageId))
 
-        if(!image) throw new Error("Image not found")
-        return JSON.parse(JSON.stringify(image))
-    } catch (error) {
-        handleError(error)
-    }
+//         if(!image) throw new Error("Image not found")
+//         return JSON.parse(JSON.stringify(image))
+//     } catch (error) {
+//         handleError(error)
+//     }
+// }
+export async function getImageById(imageId: string) {
+  try {
+      await connectToDatabase();
+      
+      // Ensure you're getting a plain object, not a Mongoose document
+      const image = await populateUser(
+          Image.findById(imageId).lean()
+      );
+
+      if (!image) throw new Error("Image not found");
+
+      return image; // Since it's a plain object now, no need to stringify
+  } catch (error) {
+      handleError(error); // Handle error appropriately
+  }
 }
 
 // For getting all the images
