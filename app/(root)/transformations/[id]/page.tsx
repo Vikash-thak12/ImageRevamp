@@ -102,7 +102,13 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
           </div>
         ) : (
           <div className="mt-10">
-            <p className="text-black text-3xl font-bold text-center">Created By <span className="text-blue-600">{image.author.firstName.toUpperCase() + ' ' + image.author.lastName.toUpperCase()}</span></p>
+            <p className="text-black text-xl lg:text-2xl font-bold text-center">
+              Created By <br />
+              <span className="text-blue-600">
+                {image.author.firstName.charAt(0).toUpperCase() + image.author.firstName.slice(1).toLowerCase() + ' ' +
+                 image.author.lastName.charAt(0).toUpperCase() + image.author.lastName.slice(1).toLowerCase()}
+              </span>
+            </p>
           </div>
         )}
       </section>

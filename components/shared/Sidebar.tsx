@@ -10,9 +10,10 @@ const Sidebar = () => {
     const pathname = usePathname()
     return (
         <aside className='sidebar'>
-            <div className='flex size-full flex-col gap-4'>
-                <Link href="/" className='sidebar-logo'>
-                    <Image src="/assets/images/logo-text.svg" alt='logo' width={180} height={28} />
+            <div className='flex size-full flex-col'>
+                <Link href="/" className='sidebar-logo hover:bg-gray-300 rounded-lg mt-4'>
+                    <Image src="/assets/images/logo.png" alt='logo' width={100} height={28} />
+                    <p className='text-gray-500 font-bold text-xl'>Image Revamp</p>
                 </Link>
 
                 <nav className='sidebar-nav'>
