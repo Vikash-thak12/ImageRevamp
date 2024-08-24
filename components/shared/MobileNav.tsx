@@ -43,14 +43,14 @@ const MobileNav = () => {
                         </SheetTrigger>
                         <SheetContent className="sheet-content bg-gray-200 sm:w-64">
                             <>
-                            <div className="flex items-center">
+                            <div className="flex items-center border">
                             <Image
                                     src="/assets/images/logo.png"
                                     alt="logo"
                                     width={70}
                                     height={28}
                                 />
-                                <p className="text-gray-500 font-bold text-xl">Image Revamp</p>
+                                <p className="text-gray-500 font-semibold text-[18px]">Image Revamp</p>
                             </div>
                                 <ul className='header-nav_elements'>
                                     {navLinks.map((link) => {
