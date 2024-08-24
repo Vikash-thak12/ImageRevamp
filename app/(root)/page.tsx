@@ -4,12 +4,13 @@ import { getAllImages } from '@/lib/actions/image.actions'
 import { auth } from '@clerk/nextjs/server'
 import Image from 'next/image'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import React from 'react'
 
 const page = async ({ searchParams }: SearchParamProps) => {
 
-  const {userId} = auth()
+  const {userId } = auth()
+  
+  
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || "";
   const images = await getAllImages({ page, searchQuery })

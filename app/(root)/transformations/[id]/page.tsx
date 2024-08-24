@@ -14,6 +14,12 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
   const { userId } = auth();
 
   const image = await getImageById(id);
+  console.log('User ID:', userId);
+  console.log('Image Author Clerk ID:', image.author.clerkId);
+
+  console.log('User ID Type:', typeof userId);
+  console.log('Image Author Clerk ID Type:', typeof image.author.clerkId);
+
 
   return (
     <>
@@ -84,7 +90,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
           />
         </div>
 
-        {userId === image.author.clerkId && (
+        {userId === image.author.clerkId ? (
           <div className="mt-4 space-y-4">
             <Button asChild type="button" className="submit-button capitalize">
               <Link href={`/transformations/${image._id}/update`}>
@@ -93,6 +99,10 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
             </Button>
 
             <DeleteConfirmation imageId={image._id} />
+          </div>
+        ) : (
+          <div className="mt-10">
+            <p className="text-black text-3xl font-bold text-center">Created By <span className="text-blue-600">{image.author.firstName.toUpperCase() + ' ' + image.author.lastName.toUpperCase()}</span></p>
           </div>
         )}
       </section>

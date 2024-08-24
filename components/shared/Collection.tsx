@@ -11,28 +11,32 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { transformationTypes } from "@/constants";
-// import { IImage } from "@/lib/database/models/image.model";
 import { Image } from "@/lib/database/models/image.model";
 import { formUrlQuery } from "@/lib/utils";
 
 import { Button } from "../ui/button";
 
 import { Search } from "./Search";
+// console.log("The images are", Image);
+
 
 export const Collection = ({
   hasSearch = false,
   images,
   totalPages = 1,
   page,
+  // currentUserId,   will work on this to show only the login user images
 }: {
   images: Image[];
   totalPages?: number;
   page: number;
   hasSearch?: boolean;
+  // currentUserId: string;   will work on this to show only the login user images
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  // const userImages = images.filter(image => image.author._id === currentUserId);   will work on this to show only the login user images
 
   // PAGINATION HANDLER
   const onPageChange = (action: string) => {

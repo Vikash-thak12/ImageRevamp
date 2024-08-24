@@ -56,7 +56,7 @@ const TransformedImage = ({ image, type, title, isTransforming, setIsTransformin
                             onError={() => {
                                 debounce(() => {
                                     setIsTransforming && setIsTransforming(false)
-                                },8000)
+                                },8000)()  // this paranthesis called as self invoke 
                             }}
 
                             {...transformationConfig}
@@ -67,10 +67,11 @@ const TransformedImage = ({ image, type, title, isTransforming, setIsTransformin
                                 <div className='transforming-loader'>
                                     <Image
                                     src='/assets/icons/spinner.svg'
-                                    alt='Transforming'
+                                    alt='spinner'
                                     width={50}
                                     height={50}
                                      />
+                                     <p className='text-white/80'>Please Wait</p>
                                 </div>
                             )
                         }
