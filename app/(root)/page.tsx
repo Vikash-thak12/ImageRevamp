@@ -19,11 +19,11 @@ const page = async ({ searchParams }: SearchParamProps) => {
       {
         userId ? (
           <>
-            <section className='home'>
-              <h1 className='home-heading'>Unleash your Creative Vision with ImageRevamp</h1>
-              <ul className='flex-center w-full gap-12'>
+            <section className='bg-custom-gradient rounded-lg py-10 hidden lg:block'>
+              <h1 className='h1-semibold mb-10 text-center text-xl text-white shadow-sm'>Unleash your Creative Vision with ImageRevamp</h1>
+              <ul className='lg:flex-center w-full gap-12 lg:block'>
                 {navLinks.slice(1, 6).map((link) => (
-                  <Link key={link.route} href={link.route} className='flex-center flex-col gap-2'>
+                  <Link key={link.route} href={link.route} className='flex-center flex-col gap-2 hover:scale-110 hover:transition-all'>
                     <li className='flex-center w-fit rounded-full bg-white p-4'>
                       <Image
                         src={link.icon}
@@ -49,9 +49,21 @@ const page = async ({ searchParams }: SearchParamProps) => {
           </>
         ) : (
           //TODO: update or Design the below code 
-          <section className='lg:home sm:home-sm'>
-            <h1 className='home-heading'>Improve, renovate, or give a fresh and updated appearance to your Image.</h1>
-          </section>
+          <>
+            <section className='bg-custom-gradient rounded-3xl py-10'>
+              <h1 className='lg:h1-semibold t mb-10 text-center lg:text-xl text-white shadow-sm'>Improve, renovate, or give a fresh and updated appearance to your Image.</h1>
+            </section>
+            <div className='mt-10 flex justify-center'>
+              <Image
+                src="/assets/images/main.jpg"
+                // src="/assets/images/main.png"
+                alt='main'
+                width={750}
+                height={150}
+                className='rounded-full'
+              />
+            </div>
+          </>
         )
       }
 
