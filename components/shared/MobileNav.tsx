@@ -43,7 +43,7 @@ const MobileNav = () => {
                         </SheetTrigger>
                         <SheetContent className="sheet-content bg-gray-200 sm:w-64">
                             <>
-                            <div className="flex items-center border">
+                            <div className="flex items-center">
                             <Image
                                     src="/assets/images/logo.png"
                                     alt="logo"
